@@ -6,4 +6,8 @@ Feature: Todo List
                 "title": "new item"
             }
             """
-        Then should get response status code of "200"
+        Then should get response status code of "201"
+        And sending "GET" to "/items" should return items containing:
+            """
+            new item
+            """
