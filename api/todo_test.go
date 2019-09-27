@@ -12,7 +12,7 @@ import (
 func FeatureContext(s *godog.Suite) {
 	stepDefinitions(s)
 	s.BeforeScenario(func(interface{}) {
-		startServer(8083)
+		go func() { startServer(8083) }()
 	})
 }
 func TestMain(m *testing.M) {
