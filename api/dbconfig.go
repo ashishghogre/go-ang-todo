@@ -8,10 +8,11 @@ import (
 )
 
 type IDatabaseClient interface {
-	setup()
+	setup(dbName string)
 	initialize()
 	upsertItem(id string, item todoItem)
 	getItem(id string) todoItem
+	getItems() []todoItem
 	teardown()
 }
 
@@ -19,9 +20,9 @@ type DatabaseClient struct {
 	dbClient *bolt.DB
 }
 
-func (dc *DatabaseClient) setup() {
+func (dc *DatabaseClient) setup(dbName string) {
 	var err error
-	dc.dbClient, err = bolt.Open("todo.db", 0600, nil)
+	dc.dbClient, err = bolt.Open(dbName, 0600, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,7 +43,7 @@ func (dc *DatabaseClient) upsertItem(id string, item todoItem) {
 		bucket := tx.Bucket([]byte("TodoItemsBucket"))
 		value, err := json.Marshal(item)
 		if err != nil {
-			return fmt.Errorf("Could not parse item %s", item)
+			return fmt.Errorf("Could not parse item %s", err)
 		}
 		err = bucket.Put([]byte(id), value)
 		if err != nil {
@@ -60,6 +61,21 @@ func (dc *DatabaseClient) getItem(id string) todoItem{
 		return nil
 	})
 	return item
+}
+
+func (dc *DatabaseClient) getItems() []todoItem{
+	var items []todoItem
+	dc.dbClient.View(func(tx *bolt.Tx) error {
+		bucket := tx.Bucket([]byte("TodoItemsBucket"))
+		bucket.ForEach(func(key []byte,value []byte) error{
+			var item todoItem
+			json.Unmarshal(value, &item)
+			items = append(items,item)
+			return nil
+		})
+		return nil
+	})
+	return items
 }
 
 func (dc *DatabaseClient) teardown() {

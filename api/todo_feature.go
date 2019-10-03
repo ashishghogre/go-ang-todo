@@ -21,6 +21,7 @@ func sendingToWithBody(method, path string, body *gherkin.DocString) (err error)
 	_, _ = fmt.Fprintf(os.Stderr, "Trying to send %s %s with body: \n%s\n", method, path, body.Content)
 	response, err = http.Post(getURL(path), "application/json", strings.NewReader(body.Content))
 	return
+
 }
 
 func shouldGetResponseStatusCodeOf(expectedStatusCode int) error {
@@ -37,6 +38,7 @@ func sendingToShouldReturnItemsContaining(method, path string, expectedText *ghe
 		return
 	}
 	body, _ := ioutil.ReadAll(response.Body)
+	fmt.Println(string(body))
 	if !strings.Contains(string(body), expectedText.Content) {
 		return fmt.Errorf("expected text %s, but got %s", expectedText.Content, string(body))
 	}
