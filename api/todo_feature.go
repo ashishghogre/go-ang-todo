@@ -12,6 +12,7 @@ import (
 )
 
 var response *http.Response
+var request *http.Request
 
 func getURL(path string) string {
 	return "http://localhost:8083" + path
@@ -19,7 +20,14 @@ func getURL(path string) string {
 
 func sendingToWithBody(method, path string, body *gherkin.DocString) (err error) {
 	_, _ = fmt.Fprintf(os.Stderr, "Trying to send %s %s with body: \n%s\n", method, path, body.Content)
-	response, err = http.Post(getURL(path), "application/json", strings.NewReader(body.Content))
+	if "POST" == method {
+		response, err = http.Post(getURL(path), "application/json", strings.NewReader(body.Content))
+	} else if "PUT" == method {
+		client := &http.Client{}
+		request, err = http.NewRequest(method, getURL(path), strings.NewReader(body.Content))
+		request.Header.Add("Content-Type", "application/json")
+		response, err = client.Do(request)
+	}
 	return
 
 }

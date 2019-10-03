@@ -11,13 +11,13 @@ import (
 
 func FeatureContext(s *godog.Suite) {
 	stepDefinitions(s)
-	s.BeforeScenario(func(interface{}) {
+	/*s.BeforeScenario(func(interface{}) {
 		go func() { startServer(8083,"todo_test.db") }()
-	})
+	})*/
 }
 func TestMain(m *testing.M) {
 	flag.Parse()
-
+	go func() { startServer(8083, "todo_test.db") }()
 	status := godog.RunWithOptions("godogs", FeatureContext, godog.Options{
 		Output: colors.Colored(os.Stdout),
 		Format: "progress", // can define default values

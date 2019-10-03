@@ -5,3 +5,7 @@ type todoItem struct {
 	Title string `json:"title"`
 	//Completed bool `json:"completed"`
 }
+
+type createResponse struct {
+	Id int `json:"id"`
+}

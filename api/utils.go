@@ -7,10 +7,14 @@ import (
 
 func handleError(err error, w http.ResponseWriter, statusCode int, errorMessage string) bool {
 	if err != nil {
-		w.Header().Add("Content-Type", "application/json")
-		w.WriteHeader(statusCode)
+		setResponseHeaders(w, statusCode)
 		json.NewEncoder(w).Encode(errorMessage)
 		return true
 	}
 	return false
+}
+
+func setResponseHeaders(w http.ResponseWriter, statusCode int){
+	w.WriteHeader(statusCode)
+	w.Header().Add("Content-Type", "application/json")
 }

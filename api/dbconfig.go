@@ -13,6 +13,8 @@ type IDatabaseClient interface {
 	upsertItem(id string, item todoItem)
 	getItem(id string) todoItem
 	getItems() []todoItem
+	updateMaxId(id string)
+	getMaxId() string
 	teardown()
 }
 
@@ -34,8 +36,33 @@ func (dc *DatabaseClient) initialize() {
 		if err != nil {
 			return fmt.Errorf("Could not create bucket %s", err)
 		}
+		_, err = tx.CreateBucketIfNotExists([]byte("MaxIdBucket"))
+		if err != nil {
+			return fmt.Errorf("Could not create bucket %s", err)
+		}
 		return nil
 	})
+}
+
+func (dc *DatabaseClient) updateMaxId(id string) {
+	dc.dbClient.Update(func(tx *bolt.Tx) error{
+		bucket := tx.Bucket([]byte("MaxIdBucket"))
+		err := bucket.Put([]byte("0"),[]byte(id))
+		if err != nil {
+			return fmt.Errorf("Could not read bucket %s", err)
+		}
+		return nil
+	})
+}
+
+func (dc *DatabaseClient) getMaxId() string {
+	var id string
+	dc.dbClient.View(func(tx *bolt.Tx) error{
+		bucket := tx.Bucket([]byte("MaxIdBucket"))
+		id = string(bucket.Get([]byte("0")))
+		return nil
+	})
+	return id
 }
 
 func (dc *DatabaseClient) upsertItem(id string, item todoItem) {
