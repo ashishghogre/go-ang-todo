@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/gorilla/mux"
+	"fmt"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 var items []todoItem
@@ -38,6 +40,10 @@ func updateItem(w http.ResponseWriter, r *http.Request) {
 func getItems(w http.ResponseWriter, r *http.Request) {
 	setResponseHeaders(w, 200)
 	err := json.NewEncoder(w).Encode(getItemsFromDb())
+	fmt.Println("here")
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Add("xyz", "application/json")
+	fmt.Println(w.Header())
 	if handleError(err, w, 500, "Internal server error") {
 		return
 	}

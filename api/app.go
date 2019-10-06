@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/gorilla/mux"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 var dbClient IDatabaseClient
 var ids chan int
-func startServer(port int,dbName string) {
+
+func startServer(port int, dbName string) {
 	router := mux.NewRouter()
 	setupRoutes(router)
 	dbClient = &DatabaseClient{}
@@ -26,6 +28,6 @@ func startServer(port int,dbName string) {
 
 func main() {
 	fmt.Println("Server starting...")
-	startServer(8080,"todo.db")
+	startServer(8080, "todo.db")
 	fmt.Println("Server stopping ...")
 }
