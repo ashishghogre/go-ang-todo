@@ -15,6 +15,6 @@ func handleError(err error, w http.ResponseWriter, statusCode int, errorMessage 
 }
 
 func setResponseHeaders(w http.ResponseWriter, statusCode int){
-	w.WriteHeader(statusCode)
 	w.Header().Add("Content-Type", "application/json")
+	w.WriteHeader(statusCode)
 }
