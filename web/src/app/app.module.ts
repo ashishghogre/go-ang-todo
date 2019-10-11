@@ -5,12 +5,16 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SideDrawerComponent } from './components/side-drawer/side-drawer.component';
+import { TodoCardComponent } from './components/todo-card/todo-card.component';
+import { BodyComponent } from './components/body/body.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SideDrawerComponent
+    SideDrawerComponent,
+    TodoCardComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
