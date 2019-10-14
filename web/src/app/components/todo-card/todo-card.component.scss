@@ -1,0 +1,27 @@
+.card{
+    width: 180px;
+    height: 180px;
+    background: #FFFF9F;
+    margin:8px 0 0 8px;
+    border: 2px solid #FFFF00;
+    border-radius: 10%;
+    &__header{
+        height: 20%;
+        width: 100%;
+        border-bottom: 0.5px solid #EEE;
+        &__content{
+            padding: 8px 0 0 8px;
+        }
+    }
+    &__body{
+        width: 100%;
+        height: 60%;
+        &__content{
+            padding: 8px 0 0 8px;
+        }
+    }
+    &__footer{
+        width: 100%;
+        height: 20%;
+    }
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-side-drawer',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideDrawerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
   }
 
   createItem() {
-      console.log("clicked");
+      this.itemService.createItem();
   }
 }

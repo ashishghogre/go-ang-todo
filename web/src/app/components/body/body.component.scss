@@ -1,5 +1,12 @@
 .app-body{
     position: fixed;
+    width: 84%;
     top:50px;
     left:16%;
+    background: #DDE;
+    border: 2px solid #AAB;
+    height: calc(100% - 50px);
+    &>ul{
+        list-style: none;
+    }
 }

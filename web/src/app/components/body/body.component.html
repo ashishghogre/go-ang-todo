@@ -1,1 +1,7 @@
-<div class="app-body"><app-todo-card></app-todo-card></div>
+<div class="app-body">
+    <ul>    
+        <li *ngFor="let item of getItems()">
+            <app-todo-card [item]=item></app-todo-card>   
+        </li>
+    </ul>
+</div>
