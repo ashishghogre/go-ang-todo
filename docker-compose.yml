@@ -11,3 +11,5 @@ services:
     build: ./api
     ports:
      - "8080:8080"
+    volumes:
+      - .:/go/src/app
