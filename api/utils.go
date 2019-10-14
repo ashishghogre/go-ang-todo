@@ -16,5 +16,8 @@ func handleError(err error, w http.ResponseWriter, statusCode int, errorMessage 
 
 func setResponseHeaders(w http.ResponseWriter, statusCode int){
 	w.Header().Add("Content-Type", "application/json")
+	w.Header().Add("Access-Control-Allow-Origin", "*")
+	w.Header().Add("Access-Control-Allow-Header", "*")
+	w.Header().Add("Access-Control-Allow-Method", "*")
 	w.WriteHeader(statusCode)
 }
