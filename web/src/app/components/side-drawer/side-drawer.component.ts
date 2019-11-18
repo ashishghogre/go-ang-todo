@@ -9,11 +9,13 @@ import { ItemService } from 'src/app/services/item.service';
 export class SideDrawerComponent implements OnInit {
 
   constructor(private itemService: ItemService) { }
-
   ngOnInit() {
   }
 
   createItem() {
+      if(!ItemService.itemAdded){
       this.itemService.createItem();
+      ItemService.itemAdded = true;
+      }
   }
 }

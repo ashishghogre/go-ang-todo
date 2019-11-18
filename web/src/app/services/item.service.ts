@@ -9,7 +9,7 @@ import { Item } from '../models/item';
 export class ItemService {
 
   static items: Item[];
-
+  static itemAdded: boolean = false;
   constructor(private http: HttpClient) {};
 
   getItems() {
