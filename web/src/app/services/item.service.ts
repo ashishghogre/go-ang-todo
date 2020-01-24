@@ -11,9 +11,10 @@ export class ItemService {
   static items: Item[];
   static itemAdded: boolean = false;
   constructor(private http: HttpClient) {};
+  static baseUrl: string = "http://localhost:8080/";
 
   getItems() {
-    this.http.get("http://localhost:8080/items").subscribe({next: this.setItems});
+    this.http.get(ItemService.baseUrl + "items").subscribe({next: this.setItems});
   }
   
   setItems(data: Item[]){
