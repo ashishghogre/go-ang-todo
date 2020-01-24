@@ -22,21 +22,35 @@ In Case you wish to use dockerized builds for development make sure to have dock
 
 ## Installing and Running Back-end API
 
-Run the following commands from within api directory
-```
-    docker build -t <tagname> .
-    docker run -p8080:8080 <tagname>
-```
--   The first command builds a docker image with the name provided in place of tagname.
--   The Second command runs the image created in first step and maps the port 8080 of host to the port 8080 inside the docker container.
--   In case port 8080 is currently in use in your host OS, change the second command to 
-```
-    docker run -p<hostPort>:8080 <tagname>
-```
--   By default the back-end api runs with an in-memory database, which gets viped off every time you restart the docker container. To get a persistent database use the following command while starting the docker container
-```
-    docker run -p8080:8080 -v$(pwd):/go/src/app <tagname>
-```
+- With Go
+    - Set the api folder as GOPATH env variable. If GOPATH env variable already exists, then add it to the GOPATH list. Run the following command to set it as env variable from within api directory
+    ```
+        echo export GOPATH=$(pwd) >> ~/.bash_profile
+        source ~/.bash_profile
+    ```
+    - change directory to app folder in api/src and run the following commands to build and run the app
+    ```
+        go get -d -v .
+        go install .
+        app
+    ```
+
+- With Docker 
+    - Run the following commands from within api directory
+    ```
+        docker build -t <tagname> .
+        docker run -p8080:8080 <tagname>
+    ```
+    -   The first command builds a docker image with the name provided in place of tagname.
+    -   The Second command runs the image created in first step and maps the port 8080 of host to the port 8080 inside the docker container.
+    -   In case port 8080 is currently in use in your host OS, change the second command to 
+    ```
+        docker run -p<hostPort>:8080 <tagname>
+    ```
+    -   By default the back-end api runs with an in-memory database, which gets viped off every time you restart the docker container. To get a persistent database use the following command while starting the docker container
+    ```
+        docker run -p8080:8080 -v$(pwd):/go/src/app <tagname>
+    ```
 
 ## Installing and Running front-end
 

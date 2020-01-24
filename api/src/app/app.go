@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/sirupsen/logrus"
 	"net/http"
-
 	"github.com/gorilla/mux"
 )
 
