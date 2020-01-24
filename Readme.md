@@ -32,7 +32,7 @@ In Case you wish to use dockerized builds for development make sure to have dock
     ```
         go get -d -v .
         go install .
-        app
+        go run app
     ```
 
 - With Docker 
