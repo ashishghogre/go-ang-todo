@@ -13,5 +13,5 @@ jobs:
       run: |
         cd web
         npm install
-        npm test
+
         
