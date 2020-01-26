@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"encoding/json"
 	"github.com/sirupsen/logrus"
 	"net/http"
@@ -32,6 +33,7 @@ func updateItem(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	logrus.Infof("Updating item with ID: %s", id)
+	item.CreatedTime = getItemFromDb(id).CreatedTime
 	updateItemInDb(id, item)
 	setResponseHeaders(w, 204)
 	logrus.Infof("Item with ID: %s successfully updated", id)
@@ -51,6 +53,12 @@ func getItem(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
 	logrus.Infof("Get item for ID %s", id)
 	item := getItemFromDb(id)
+	if item.ID == 0 {
+		setResponseHeaders(w, 404)
+		json.NewEncoder(w).Encode(fmt.Sprintf("Item not found for id: %s", id))
+		logrus.Warnf("Item not found for id: %s", id)
+		return
+	}
 	setResponseHeaders(w, 200)
 	if handleError(json.NewEncoder(w).Encode(item), w,
 		500, "Internal server error") {
