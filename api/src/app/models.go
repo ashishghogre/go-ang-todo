@@ -1,11 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type todoItem struct {
 	ID    int    `json:"id"`
 	Title string `json:"title"`
 	Details string `json:"details"`
+	CreatedTime string `json:"createdTime"`
+	
 	//Completed bool `json:"completed"`
 }
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 	"strconv"
 )
 
@@ -18,6 +19,7 @@ func createItemInDb(item todoItem) int {
 	id := <-ids
 	fmt.Printf("getting id %d", id)
 	item.ID = id
+	item.CreatedTime = time.Now().Format("02-01-2006 15:04:05")
 	dbClient.upsertItem(strconv.Itoa(id), item)
 	return id
 }
