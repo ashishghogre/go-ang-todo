@@ -13,6 +13,10 @@ export class ItemService {
   constructor(private http: HttpClient) {};
   static baseUrl: string = "http://localhost:8080/";
 
+ static getAllItems(): Item[] {
+   return ItemService.items;
+ }
+
   getItems() {
     this.http.get(ItemService.baseUrl + "items").subscribe({next: this.setItems});
   }

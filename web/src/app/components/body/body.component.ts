@@ -16,6 +16,6 @@ export class BodyComponent implements OnInit {
   }
 
   getItems(): Item[]{
-    return ItemService.items;
+    return ItemService.getAllItems();
   }
 }

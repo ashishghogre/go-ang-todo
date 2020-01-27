@@ -11,7 +11,7 @@ import { BodyComponent } from './components/body/body.component';
 import { EditableTodoItemComponent } from './components/editable-todo-item/editable-todo-item.component';
 import { ReadOnlyTodoItemComponent } from './components/read-only-todo-item/read-only-todo-item.component';
 import { EmptyTodoItemComponent } from './components/empty-todo-item/empty-todo-item.component';
-import { from } from 'rxjs';
+
 
 @NgModule({
   declarations: [

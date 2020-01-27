@@ -16,6 +16,7 @@ describe('TodoCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoCardComponent);
     component = fixture.componentInstance;
+    component.item = {id:123,title:"Title","details":"Details"};
     fixture.detectChanges();
   });
 

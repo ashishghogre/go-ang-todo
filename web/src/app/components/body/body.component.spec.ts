@@ -1,14 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BodyComponent } from './body.component';
+import { ItemService } from 'src/app/services/item.service';
+import { TodoCardComponent } from '../todo-card/todo-card.component';
+import { HttpClient } from '@angular/common/http';
 
 describe('BodyComponent', () => {
   let component: BodyComponent;
+  //let itemService: jasmine.SpyObj<ItemService>;
+  let client: HttpClient;
   let fixture: ComponentFixture<BodyComponent>;
 
   beforeEach(async(() => {
+    const spy  = jasmine.createSpyObj('ItemService',['getItems','getAllItems','http'])
     TestBed.configureTestingModule({
-      declarations: [ BodyComponent ]
+      declarations: [ BodyComponent, TodoCardComponent ],
+      providers:[{
+        provide: ItemService, useValue:spy
+      }]
     })
     .compileComponents();
   }));
@@ -20,6 +29,7 @@ describe('BodyComponent', () => {
   });
 
   it('should create', () => {
+    spyOn(ItemService,'getAllItems').and.returnValue([]);
     expect(component).toBeTruthy();
   });
 });
