@@ -3,9 +3,10 @@ name: Client Test
 on: [push]
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
     - uses: actions/checkout@v1
     - name: Run test on client
