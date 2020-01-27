@@ -1,7 +1,6 @@
-name: CI
+name: Client Test
 
 on: [push]
-
 jobs:
   build:
 

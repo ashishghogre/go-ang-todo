@@ -1,3 +1,9 @@
+
+
+<img src="https://github.com/ashishghogre/go-ang-todo/workflows/Back-end%20Test/badge.svg"/> <img src="https://github.com/ashishghogre/go-ang-todo/workflows/Client%20Test/badge.svg"/> 
+
+
+
 # TODO APP
 
 A simple app to manage list of todo items built in Angular8 and GoLang
