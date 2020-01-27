@@ -1,4 +1,4 @@
 /**.db*
-/api/src/*
+/api/*
 /api/bin
-!/api/src/app
+!/api/src
