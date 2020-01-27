@@ -25,6 +25,6 @@ export class ItemService {
 
   createItem() {
     console.log(this);
-    ItemService.items = [...ItemService.items,{id:undefined, title: undefined}]
+    ItemService.items = [...ItemService.items,{id:undefined, title: undefined, details: undefined}]
   }
 }

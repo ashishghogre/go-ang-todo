@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { BodyComponent } from './components/body/body.component';
 import { EditableTodoItemComponent } from './components/editable-todo-item/editable-todo-item.component';
 import { ReadOnlyTodoItemComponent } from './components/read-only-todo-item/read-only-todo-item.component';
 import { EmptyTodoItemComponent } from './components/empty-todo-item/empty-todo-item.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { EmptyTodoItemComponent } from './components/empty-todo-item/empty-todo-
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     HttpClientModule
   ],
   providers: [],

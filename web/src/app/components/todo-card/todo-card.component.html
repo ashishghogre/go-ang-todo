@@ -1,16 +1,11 @@
-<div class="card">
-    <section class="card__header">
-        <div class="card__header__content">
-            {{item.title}}
-        </div>
-        <img class="card__edit-icon" src="../../../assets/edit-24px.svg"/>
+<div class="card todo-card">
+    <section class="card-header bg-secondary text-white todo-card__header">
+        <span>{{item.title}}</span>
+        <img class="todo-card__edit-icon" src="../../../assets/edit-24px.svg"/>
     </section>
-    <section class="card__body">
-        <div class="card__body__content">
-            {{item.details}}
-        </div>
-    </section>
-    <section class="card__footer">
-
+    <section class="card-body">
+        <p class="todo-card__time">Created On : {{item.createdTime}}</p>
+        <p class="card-text">{{item.details}}</p>
+        <button class="btn btn-outline-dark">Mark as Complete</button>
     </section>
 </div>
