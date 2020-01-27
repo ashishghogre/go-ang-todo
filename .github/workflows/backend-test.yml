@@ -15,4 +15,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v1
     - name: Test
-      run: go test ./...
+      run:
+        - cd api/src
+        - go build .
+        - go install . 
+        - go test
