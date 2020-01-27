@@ -23,16 +23,11 @@ In Case you wish to use dockerized builds for development make sure to have dock
 ## Installing and Running Back-end API
 
 - With Go
-    - Set the api folder as GOPATH env variable. If GOPATH env variable already exists, then add it to the GOPATH list. Run the following command to set it as env variable from within api directory
+    - change directory to src folder in api and run the following commands to build and run the app
     ```
-        echo export GOPATH=$(pwd) >> ~/.bash_profile
-        source ~/.bash_profile
-    ```
-    - change directory to app folder in api/src and run the following commands to build and run the app
-    ```
-        go get -d -v .
+        go build .
         go install .
-        go run app
+        go run github.com/ashishghoge/goapi
     ```
 
 - With Docker 
