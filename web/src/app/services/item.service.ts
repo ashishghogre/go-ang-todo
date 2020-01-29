@@ -1,34 +1,35 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
-import { Item } from '../models/item';
+import { Injectable, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject } from "rxjs";
+import { Item } from "../models/item";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ItemService {
-
-  static items: Item[];
-  static itemAdded: boolean = false;
-  constructor(private http: HttpClient) {};
+  items: Item[] = [];
+  itemAdded: boolean = false;
+  constructor(private http: HttpClient) {}
   static baseUrl: string = "http://localhost:8080/";
 
- static getAllItems(): Item[] {
-   return ItemService.items;
- }
+  getAllItems(): Item[] {
+    return this.items;
+  }
 
   getItems() {
-    this.http.get(ItemService.baseUrl + "items").subscribe({next: this.setItems});
+    this.http
+      .get(ItemService.baseUrl + "items")
+      .subscribe({ next: this.setItems.bind(this) });
   }
-  
-  setItems(data: Item[]){
-    console.log(data)
-    ItemService.items = data;
-    console.log(ItemService.items)
+
+  setItems(data: Item[]) {
+    this.items = [...data];
   }
 
   createItem() {
-    console.log(this);
-    ItemService.items = [...ItemService.items,{id:undefined, title: undefined, details: undefined}]
+    this.items = [
+      ...this.items,
+      { id: undefined, title: undefined, details: undefined }
+    ];
   }
 }
