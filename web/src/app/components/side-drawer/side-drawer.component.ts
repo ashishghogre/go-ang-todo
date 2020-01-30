@@ -11,6 +11,7 @@ export class SideDrawerComponent implements OnInit {
   ngOnInit() {}
 
   createItem() {
+    console.log(this.itemService.itemAdded);
     if (!this.itemService.itemAdded) {
       this.itemService.createItem();
       this.itemService.itemAdded = true;
